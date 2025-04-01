@@ -1,0 +1,38 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Lista de Tarefas</h2>
+
+  <a (click)="addTask()" class="btn btn-primary mb-3">+ Nova Tarefa</a>
+
+  <table class="table table-bordered table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>Título</th>
+        <th>Responsável</th>
+        <th>Prioridade</th>
+        <th>Deadline</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of tasks">
+        <td [ngClass]="{ 'text-decoration-line-through': task.status === 'COMPLETED' }">
+          {{ task.title }}
+        </td>
+        <td [ngClass]="{ 'text-decoration-line-through': task.status === 'COMPLETED' }">{{ task.responsible }}</td>
+        <td>
+          <span class="badge" [ngClass]="getPriorityClass(task.priority)">
+            {{ task.priority }}
+          </span>
+        </td>
+        <td [ngClass]="{ 'text-decoration-line-through': task.status === 'COMPLETED' }">{{ task.deadline }}</td>
+        <td>
+          <a (click)="edit(task.id)" class="btn btn-warning btn-sm">✏️ Editar</a>
+          <button class="btn btn-danger btn-sm ms-2" (click)="deleteTask(task.id)">🗑 Excluir</button>
+          <button *ngIf="task.status === 'IN_PROGRESS'" class="btn btn-success btn-sm ms-2" (click)="completeTask(task.id)">
+            ✅ Concluir
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

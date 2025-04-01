@@ -1,0 +1,22 @@
+<div>
+  <app-buttons (loginEvent)="showComponent('login')"
+               (logoutEvent)="showComponent('welcome')"/>
+
+  <app-welcome-content *ngIf="componentToShow == 'welcome'"/>
+  <app-login-form *ngIf="componentToShow == 'login'"
+
+  (onSubmitLoginEvent)="onLogin($event)"
+  (onSubmitRegisterEvent)="onRegister($event)"
+
+  />
+  <div *ngIf="componentToShow == 'task-form'">
+    <app-task-form (changeComponent)="onChangeComponent($event)"></app-task-form>
+  </div>
+
+  <div *ngIf="componentToShow == 'task-list'">
+    <app-task-list (changeComponent)="onChangeComponent($event)"></app-task-list>
+  </div>
+
+
+  <app-auth-content *ngIf="componentToShow == 'messages'"/>
+</div>

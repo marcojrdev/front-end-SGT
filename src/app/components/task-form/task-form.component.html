@@ -1,0 +1,49 @@
+<div class="container mt-4">
+  <h2>{{ taskId ? 'Editar Tarefa' : 'Nova Tarefa' }}</h2>
+
+  <form [formGroup]="taskForm" (ngSubmit)="saveTask()">
+    <div class="mb-3">
+      <label class="form-label">Título</label>
+      <input type="text" class="form-control" formControlName="title"  required />
+      <span *ngIf="taskForm.controls['title'].invalid && taskForm.controls['title'].touched">
+        Campo obrigatório!
+      </span>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Descrição</label>
+      <textarea class="form-control" formControlName="description" required></textarea>
+      <span *ngIf="taskForm.controls['description'].invalid && taskForm.controls['description'].touched">
+        Campo obrigatório!
+      </span>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Responsável</label>
+      <input type="text" class="form-control" formControlName="responsible" required />
+      <span *ngIf="taskForm.controls['responsible'].invalid && taskForm.controls['responsible'].touched">
+        Campo obrigatório!
+      </span>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Prioridade</label>
+      <select class="form-select" formControlName="priority">
+        <option value="HIGH">Alta</option>
+        <option value="MEDIUM">Média</option>
+        <option value="LOW">Baixa</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Prazo</label>
+      <input type="date" class="form-control" formControlName="deadline" required />
+      <span *ngIf="taskForm.controls['deadline'].invalid && taskForm.controls['deadline'].touched">
+        Campo obrigatório!
+      </span>
+    </div>
+
+    <button type="submit" routerLink="/" class="btn btn-primary">Salvar</button>
+    <a (click)="cancelar()" class="btn btn-secondary ms-2">Cancelar</a>
+  </form>
+</div>
